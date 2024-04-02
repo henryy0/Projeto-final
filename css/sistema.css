@@ -1,95 +1,128 @@
-/* Estilos para a página principal do sistema */
+/* Reset de estilos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+/* Estilos para o corpo da página */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* Estilos para a barra de navegação */
+.navbar {
+    background: linear-gradient(to right, #2980b9, #2c3e50); /* Gradiente azul */
+    color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: all 0.3s ease; /* Transição suave */
+}
+
+.navbar-brand {
+    color: #fff;
+    font-weight: bold;
+    transition: color 0.3s ease; /* Transição suave */
+}
+
+.navbar-brand:hover {
+    color: #f8c471; /* Amarelo alaranjado */
+}
+
+.navbar-toggler-icon {
+    background-color: #fff;
+}
+
+.navbar-nav .nav-link {
+    color: #fff;
+    transition: color 0.3s ease; /* Transição suave */
+}
+
+.navbar-nav .nav-link:hover {
+    color: #f8c471; /* Amarelo alaranjado */
+}
+
+/* Estilos para o conteúdo principal */
 .container {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
+    margin-top: 20px;
 }
 
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
+/* Estilos para o rodapé */
+.footer {
+    background: linear-gradient(to right, #2980b9, #2c3e50); /* Gradiente azul */
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: all 0.3s ease; /* Transição suave */
 }
 
-.logo {
-    display: flex;
-    align-items: center;
+.footer:hover {
+    background: linear-gradient(to right, #2c3e50, #34495e); /* Gradiente azul mais escuro */
 }
 
-.logo img {
-    width: 50px;
-    height: 50px;
-    margin-right: 10px;
+.footer p {
+    margin-bottom: 0;
 }
 
-.logo h1 {
-    font-size: 24px;
-    color: #336699;
-}
-
-.profile {
+/* Estilos para o menu dropdown */
+.nav-item.dropdown {
     position: relative;
 }
 
-.profile img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
-}
-
-.profile-menu {
+.dropdown-menu {
     position: absolute;
-    top: 60px;
-    right: 0;
-    background-color: #fff;
-    border: 1px solid #336699;
-    padding: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    display: none;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    background: linear-gradient(to right, #2980b9, #2c3e50); /* Gradiente azul */
+    border: 1px solid #ccc; /* Borda cinza */
+    border-radius: 5px; /* Bordas arredondadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    transition: all 0.3s ease; /* Transição suave */
+    overflow: hidden; /* Oculta parte do menu que ultrapassar o limite */
 }
 
-.profile-menu a {
+.dropdown-menu a {
     display: block;
-    color: #336699;
-    text-decoration: none;
-    padding: 5px;
-}
-
-.profile-menu a:hover {
-    background-color: #336699;
     color: #fff;
+    padding: 10px 20px;
+    transition: background 0.3s ease; /* Transição suave */
 }
 
-.menu {
-    background-color: #f0f5f9;
-    padding: 20px;
-    border-radius: 10px;
+.dropdown-menu a:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Fundo branco com transparência */
 }
 
-.menu h3 {
-    color: #336699;
-    font-size: 20px;
-    margin-bottom: 10px;
+.dropdown-menu a:hover,
+.dropdown-menu a:focus {
+    color: #f8c471; /* Amarelo alaranjado */
 }
 
-.menu ul {
-    list-style: none;
-    padding: 0;
+.dropdown-divider {
+    margin: 0;
+    border-top: 1px solid #ccc; /* Borda superior cinza */
+    background-color: #34495e; /* Azul mais escuro */
 }
 
-.menu ul li {
-    margin-bottom: 10px;
+/* Estilo para a imagem do usuário no menu dropdown */
+.nav-link img {
+    border-radius: 50%;
+    margin-right: 10px;
 }
 
-.menu ul li a {
-    color: #336699;
-    text-decoration: none;
-    font-size: 16px;
+/* Ajustes de posicionamento para a animação de fade-in */
+.dropdown-menu.fade-in {
+    animation: fadeIn 0.5s ease;
 }
 
-.menu ul li a:hover {
-    color: #2a5173;
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

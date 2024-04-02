@@ -1,0 +1,87 @@
+/* Estilos específicos para a página home */
+
+/* Seção do herói */
+.hero {
+    background-image: url('path/to/your/image.jpg'); /* Imagem de fundo */
+    background-size: cover; /* Cobrir todo o espaço disponível */
+    background-position: center; /* Centralizar a imagem */
+    padding: 100px 0; /* Espaçamento interno */
+    text-align: center; /* Centralizar conteúdo */
+    color: #000000; /* Cor do texto */
+}
+
+.hero h1 {
+    font-size: 4rem; /* Tamanho da fonte do título */
+    margin-bottom: 20px; /* Espaçamento inferior */
+}
+
+.hero p {
+    font-size: 1.5rem; /* Tamanho da fonte do parágrafo */
+    margin-bottom: 40px; /* Espaçamento inferior */
+}
+
+/* Seção de recursos */
+.features {
+    background-color: #f8f9fa; /* Cor de fundo */
+    padding: 100px 0; /* Espaçamento interno */
+}
+
+.features h2 {
+    font-size: 3rem; /* Tamanho da fonte do título */
+    margin-bottom: 50px; /* Espaçamento inferior */
+    color: #333; /* Cor do texto */
+}
+
+.feature {
+    margin-bottom: 40px; /* Espaçamento inferior */
+}
+
+.feature i {
+    font-size: 5rem; /* Tamanho do ícone */
+    margin-bottom: 30px; /* Espaçamento inferior */
+    color: #2980b9; /* Cor do ícone */
+}
+
+.feature h3 {
+    font-size: 2.5rem; /* Tamanho da fonte do título */
+    margin-bottom: 20px; /* Espaçamento inferior */
+    color: #333; /* Cor do texto */
+}
+
+.feature p {
+    font-size: 1.2rem; /* Tamanho da fonte do parágrafo */
+    color: #555; /* Cor do texto */
+}
+
+/* Seção de chamada para ação */
+.call-to-action {
+    background-image: linear-gradient(to right, #2980b9, #2c3e50); /* Gradiente azul */
+    padding: 100px 0; /* Espaçamento interno */
+    text-align: center; /* Centralizar conteúdo */
+}
+
+.call-to-action h2 {
+    font-size: 4rem; /* Tamanho da fonte do título */
+    margin-bottom: 40px; /* Espaçamento inferior */
+    color: #fff; /* Cor do texto */
+}
+
+.call-to-action p {
+    font-size: 1.5rem; /* Tamanho da fonte do parágrafo */
+    margin-bottom: 40px; /* Espaçamento inferior */
+    color: #fff; /* Cor do texto */
+}
+
+.call-to-action .btn-primary {
+    font-size: 1.5rem; /* Tamanho da fonte do botão */
+    padding: 15px 30px; /* Espaçamento interno */
+    border-radius: 50px; /* Borda arredondada */
+    background-color: #fff; /* Cor de fundo */
+    color: #2980b9; /* Cor do texto */
+    transition: background-color 0.3s ease; /* Transição suave */
+}
+
+.call-to-action .btn-primary:hover {
+    background-color: #2c3e50; /* Cor de fundo ao passar o mouse */
+    color: #fff; /* Cor do texto ao passar o mouse */
+}

@@ -13,7 +13,7 @@ session_start();
     <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/sistem.css"> <!-- Alteração feita aqui -->
+    <link rel="stylesheet" href="css/sistema.css"> <!-- Alteração feita aqui -->
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="img/logo.png">
 </head>
@@ -50,36 +50,13 @@ session_start();
                     <li class="nav-item">
                         <a class="nav-link" href="calendario/calendario.php">Calendário</a>
                     </li>
-                    <?php
-                    if(isset($_SESSION['id_usuario'])) {
-                        // Se o usuário estiver logado, exibe o menu do perfil com o nome do usuário
-                        echo '
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
-                            if(isset($_SESSION['foto_usuario'])) {
-                                echo '<img src="img/usuarios/'.$_SESSION['id_usuario'].'/'.$_SESSION['foto_usuario'].'" alt="Imagem do Usuário" class="rounded-circle" height="30" width="30">';
-                            } else {
-                                echo '<i class="fas fa-user"></i>';
-                            }
-                            echo ' ' . $_SESSION['nome_usuario']; // Adicionando o nome do usuário
-                            echo '</a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="usuarios/atualizar_perfil.php">Atualizar Perfil</a>
-                                <a class="dropdown-item" href="usuarios/logout.php">Sair</a>
-                            </div>
-                        </li>';
-                    } else {
-                        // Se o usuário não estiver logado, exibe o link de login
-                        echo '
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.php"><i class="fas fa-sign-in-alt"></i> Login</a>
-                        </li>';
-                    }
-                    ?>
+                    <!-- Include do menu dropdown -->
+                    <?php include 'menu_dropdown.php'; ?>
                 </ul>
             </div>
         </div>
     </nav>
+
 
     <!-- Conteúdo Principal -->
     <div class="container mt-4">
