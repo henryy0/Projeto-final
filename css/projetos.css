@@ -1,0 +1,185 @@
+/* Estilo para o body */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilo para o container */
+.container {
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Estilo para o título */
+h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    font-size: 36px;
+    letter-spacing: 2px;
+}
+
+/* Estilo para os botões */
+button {
+    padding: 12px 24px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    text-transform: uppercase;
+    outline: none;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Estilo para os botões secundários */
+.secondary-button {
+    background-color: #f44336;
+}
+
+.secondary-button:hover {
+    background-color: #d32f2f;
+}
+
+/* Estilo para os botões de filtro */
+.filtro-container {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.filtro-container button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    background-color: #fff;
+    color: #333;
+    border: 2px solid #333;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    outline: none;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.filtro-container button:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+/* Estilo para os cartões de projeto */
+.projeto-card {
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.projeto-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.projeto-card h2 {
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.projeto-card p {
+    color: #666;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+/* Estilo para os botões de ação */
+.botoes-acao button {
+    padding: 8px 16px;
+    margin-right: 10px;
+    background-color: #ff9800;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    outline: none;
+    transition: background-color 0.3s ease;
+}
+
+.botoes-acao button:hover {
+    background-color: #f57c00;
+}
+
+/* Estilo para o botão de mostrar/esconder detalhes */
+.toggleDetails {
+    padding: 8px 16px;
+    background-color: #2196F3;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    outline: none;
+    transition: background-color 0.3s ease;
+}
+
+.toggleDetails:hover {
+    background-color: #1976D2;
+}
+
+/* Estilo para os detalhes do projeto */
+.detalhes-projeto {
+    display: none;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para os modais */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+}
