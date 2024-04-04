@@ -175,11 +175,14 @@
     <!-- Modal para Pausar Projeto -->
     <div id="modalPausarProjeto" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="fecharModalPausar('#modalPausarProjeto')">&times;</span>
+            <span class="close" onclick="fecharModalPausar()">&times;</span>
             <h2>Pausar Projeto</h2>
             <!-- Formulário de confirmação de pausa do projeto -->
             <form id="formPausarProjeto" action="pausar_projeto.php" method="POST">
-                <input type="hidden" id="idProjetoPausar" name="idProjetoPausar">
+                <!-- Campo oculto para enviar o ID do projeto -->
+                <input type="hidden" id="idProjeto" name="id_projeto">
+                <!-- Campo oculto para enviar o status -->
+                <input type="hidden" id="statusProjeto" name="status_projeto">
                 <p>Tem certeza de que deseja pausar este projeto?</p>
                 <button type="submit">Sim, Pausar</button>
             </form>
