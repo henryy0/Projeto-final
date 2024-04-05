@@ -1,125 +1,111 @@
-/* Estilos para o container principal */
+/* Estilos gerais */
+body {
+    background-color: #f0f0f0;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Container principal */
 .container {
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
 }
 
-/* Estilos para o título */
+/* Título */
 h1 {
     text-align: center;
     margin-bottom: 20px;
-    color: #333; /* Cor do texto */
-    font-family: 'Arial', sans-serif; /* Fonte do texto */
+    color: #333;
+    font-family: 'Roboto', sans-serif;
 }
 
-/* Estilos para os botões */
+/* Botões */
 button {
-    margin-bottom: 10px;
-    padding: 10px 20px;
-    background-color: #007bff; /* Cor de fundo do botão */
-    color: #fff; /* Cor do texto do botão */
+    padding: 10px 20px; /* Reduzido o padding */
+    background: linear-gradient(to right, #2980b9, #2c3e50); /* Gradiente azul */
+    color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 20px !important; /* Adicionado !important para garantir que esta regra seja aplicada */
     cursor: pointer;
+    font-size: 14px; /* Tamanho da fonte reduzido */
+    text-transform: uppercase;
+    outline: none;
     transition: background-color 0.3s ease;
-    font-family: 'Arial', sans-serif; /* Fonte do texto */
 }
 
 button:hover {
-    background-color: #0056b3; /* Cor de fundo do botão ao passar o mouse */
+    background: linear-gradient(to right, #045A72, #073B4C); /* Gradiente azul escuro */
 }
 
-/* Estilos para o container de filtro */
+/* Estilos para os botões de filtro */
 .filtro-container {
     text-align: center;
     margin-bottom: 20px;
 }
 
-/* Estilos para os botões de filtro */
 .filtro-container button {
-    margin-right: 10px;
-    padding: 8px 16px;
-    border: 2px solid #007bff; /* Cor da borda */
-    border-radius: 20px;
-    background-color: transparent;
-    color: #007bff; /* Cor do texto */
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-    font-family: 'Arial', sans-serif; /* Fonte do texto */
+    background: linear-gradient(to right, #2980b9, #2c3e50); /* Gradiente azul */
+    color: #fff;
+    padding: 10px 20px; /* Reduzido o padding */
+    border: none;
+    border-radius: 20px; /* Reduzido o raio da borda */
+    cursor: pointer;
+    font-size: 14px; /* Tamanho da fonte reduzido */
+    text-transform: uppercase;
+    outline: none;
+    transition: all 0.3s ease; /* Transição suave */
+    margin-left: 5px;
 }
 
 .filtro-container button:hover {
-    background-color: #007bff; /* Cor de fundo do botão ao passar o mouse */
-    color: #fff; /* Cor do texto ao passar o mouse */
+    background: linear-gradient(to right, #045A72, #073B4C); /* Gradiente azul escuro */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
 }
 
-/* Estilos para os botões de filtro ativos */
-.filtro-container button.active {
-    background-color: #007bff; /* Cor de fundo do botão ativo */
-    color: #fff; /* Cor do texto do botão ativo */
-    border-color: #007bff; /* Cor da borda do botão ativo */
-}
-
-/* Estilos para os cartões de tarefa */
+/* Tarefa Card */
 .tarefa-card {
-    background-color: #fff; /* Cor de fundo do cartão */
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
     margin-bottom: 20px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
 }
 
 .tarefa-card:hover {
-    transform: translateY(-5px); /* Efeito de elevação ao passar o mouse */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Sombra aumentada ao passar o mouse */
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilos para o título da tarefa */
 .tarefa-card h2 {
-    color: #333; /* Cor do texto */
+    color: #333;
     font-size: 24px;
     margin-bottom: 10px;
 }
 
-/* Estilos para os detalhes da tarefa */
 .tarefa-card p {
-    color: #666; /* Cor do texto */
+    color: #666;
     margin-bottom: 5px;
 }
 
-/* Estilos para o responsável pela tarefa */
 .responsavel-tarefa {
-    margin-top: 10px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
     display: flex;
     align-items: center;
 }
 
 .responsavel-tarefa img {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     margin-right: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilos para os botões de ação */
-.botoes-acao button {
-    margin-right: 10px;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 20px;
-    background-color: #007bff; /* Cor de fundo do botão */
-    color: #fff; /* Cor do texto do botão */
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    font-family: 'Arial', sans-serif; /* Fonte do texto */
-}
-
-.botoes-acao button:hover {
-    background-color: #0056b3; /* Cor de fundo do botão ao passar o mouse */
-}
-
-/* Estilos para os modais */
+/* Modais */
 .modal {
     display: none;
     position: fixed;
@@ -127,17 +113,45 @@ button:hover {
     left: 0;
     top: 0;
     width: 100%;
-    height: 100%;
+    height: 80%; /* Alterado para 80% da altura da tela */
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal-content {
     background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding-left: 12px;
+    border-radius: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 600px;
+}
+
+.modal-content h2 {
+    font-size: 20px; /* Tamanho da fonte reduzido */
+    margin-top: 0; /* Removido o espaçamento superior */
+    margin-bottom: 5px; /* Reduzido o espaçamento inferior */
+}
+
+.modal-header,
+.modal-footer {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+.modal-body {
+    padding: 20px 0;
+}
+
+.modal-content label {
+    display: block;
+    margin-bottom: 8px; /* Reduzido o espaçamento */
+    color: #333;
+    font-size: 14px; /* Tamanho da fonte reduzido */
 }
 
 .close {
@@ -152,4 +166,77 @@ button:hover {
 .close:focus {
     color: black;
     text-decoration: none;
+}
+
+.modal-content input[type="text"],
+.modal-content input[type="date"],
+.modal-content textarea,
+.modal-content select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.modal-content button {
+    background: linear-gradient(to right, #2980b9, #2c3e50); /* Gradiente azul */
+    color: #fff;
+    padding: 8px 16px; /* Reduzido o padding */
+    border: none;
+    border-radius: 20px; /* Reduzido o raio da borda */
+    cursor: pointer;
+    float: right; /* Move o botão para a direita */
+    margin-top: -10px; /* Move o botão para cima */
+    margin-left: -50px; /* Ajusta a posição do botão para a direita */
+    font-size: 14px; /* Tamanho da fonte reduzido */
+    transition: all 0.3s ease; /* Transição suave */
+}
+
+.modal-content button:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    background: linear-gradient(to right, #045A72, #073B4C); /* Gradiente azul escuro */
+}
+
+
+/* Responsividade */
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    .tarefa-card {
+        padding: 15px;
+    }
+    .tarefa-card h2 {
+        font-size: 20px;
+    }
+    .tarefa-card p {
+        font-size: 14px;
+    }
+    .responsavel-tarefa img {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+    }
+}
+
+/* Botões de ação */
+.botoes-acao button {
+    padding: 10px 20px; /* Reduzido o padding */
+    background: linear-gradient(to right, #2980b9, #2c3e50); /* Gradiente azul */
+    color: #fff;
+    border: none;
+    border-radius: 20px !important; /* Adicionado !important para garantir que esta regra seja aplicada */
+    cursor: pointer;
+    font-size: 14px; /* Tamanho da fonte reduzido */
+    text-transform: uppercase;
+    outline: none;
+    transition: background-color 0.3s ease;
+}
+
+.botoes-acao button:hover {
+    background: linear-gradient(to right, #045A72, #073B4C); /* Gradiente azul escuro */
 }

@@ -24,8 +24,8 @@
             <button onclick="filtrarTarefas('pausado')">Pausado</button>
         </div>
 
-        <!-- Container para as tarefas -->
-        <div class="tarefa-container">
+         <!-- Container para as tarefas -->
+         <div class="tarefa-container">
             <?php
             // Incluir o arquivo externo com a lógica PHP para listar as tarefas do projeto
             $tarefas = require_once('listar_tarefas.php');
@@ -41,7 +41,11 @@
 
                     <!-- Responsável pela Tarefa -->
                     <div class="responsavel-tarefa">
-                        <img src="<?= $tarefa['Foto_Responsavel'] ?>" alt="Foto do Responsável">
+                        <?php if (!empty($tarefa['Foto_Responsavel'])) : ?>
+                            <img src="<?= $tarefa['Foto_Responsavel'] ?>" alt="Foto do Responsável">
+                        <?php else : ?>
+                            <p>Não há foto disponível</p>
+                        <?php endif; ?>
                         <p><?= $tarefa['Nome_Responsavel'] ?></p>
                     </div>
 
@@ -55,6 +59,7 @@
             <?php endforeach; ?>
         </div>
     </div>
+
 
     <!-- Modal para Adicionar Tarefa -->
     <div id="modalAdicionarTarefa" class="modal" style="display: none;">
@@ -75,10 +80,18 @@
                 <label for="descricaoTarefa">Descrição da Tarefa:</label>
                 <textarea id="descricaoTarefa" name="descricaoTarefa" required></textarea>
 
+                <label for="projetoTarefa">Projeto:</label>
+                <select id="projetoTarefa" name="projetoTarefa" required>
+                    <!-- Opções preenchidas dinamicamente pelo PHP -->
+                    <?php include '../projetos/opcoes_projetos.php'; ?>
+                </select>
+
                 <label for="responsavelTarefaAdicionar">Responsável pela Tarefa:</label>
                 <select id="responsavelTarefaAdicionar" name="responsavelTarefa" required>
-                    <?php include '../usuarios/lista_usuarios.php'; ?>
+                    <!-- Opções preenchidas dinamicamente pelo PHP -->
+                    <?php include '../usuarios/opcoes_usuarios.php'; ?>
                 </select>
+
 
                 <button type="submit">Adicionar</button>
             </form>
@@ -105,9 +118,16 @@
                 <label for="descricaoTarefaEditar">Descrição da Tarefa:</label>
                 <textarea id="descricaoTarefaEditar" name="descricaoTarefaEditar" required></textarea>
 
-                <label for="responsavelTarefaEditar">Responsável pela Tarefa:</label>
-                <select id="responsavelTarefaEditar" name="responsavelTarefaEditar" required>
-                    <?php include '../usuarios/listas'; ?>
+                <label for="projetoTarefa">Projeto:</label>
+                <select id="projetoTarefa" name="projetoTarefa" required>
+                    <!-- Opções preenchidas dinamicamente pelo PHP -->
+                    <?php include '../projetos/opcoes_projetos.php'; ?>
+                </select>
+
+                <label for="responsavelTarefaAdicionar">Responsável pela Tarefa:</label>
+                <select id="responsavelTarefaAdicionar" name="responsavelTarefa" required>
+                    <!-- Opções preenchidas dinamicamente pelo PHP -->
+                    <?php include '../usuarios/opcoes_usuarios.php'; ?>
                 </select>
 
                 <button type="submit">Salvar Alterações</button>
