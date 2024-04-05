@@ -1,0 +1,155 @@
+/* Estilos para o container principal */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Estilos para o título */
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333; /* Cor do texto */
+    font-family: 'Arial', sans-serif; /* Fonte do texto */
+}
+
+/* Estilos para os botões */
+button {
+    margin-bottom: 10px;
+    padding: 10px 20px;
+    background-color: #007bff; /* Cor de fundo do botão */
+    color: #fff; /* Cor do texto do botão */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: 'Arial', sans-serif; /* Fonte do texto */
+}
+
+button:hover {
+    background-color: #0056b3; /* Cor de fundo do botão ao passar o mouse */
+}
+
+/* Estilos para o container de filtro */
+.filtro-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Estilos para os botões de filtro */
+.filtro-container button {
+    margin-right: 10px;
+    padding: 8px 16px;
+    border: 2px solid #007bff; /* Cor da borda */
+    border-radius: 20px;
+    background-color: transparent;
+    color: #007bff; /* Cor do texto */
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    font-family: 'Arial', sans-serif; /* Fonte do texto */
+}
+
+.filtro-container button:hover {
+    background-color: #007bff; /* Cor de fundo do botão ao passar o mouse */
+    color: #fff; /* Cor do texto ao passar o mouse */
+}
+
+/* Estilos para os botões de filtro ativos */
+.filtro-container button.active {
+    background-color: #007bff; /* Cor de fundo do botão ativo */
+    color: #fff; /* Cor do texto do botão ativo */
+    border-color: #007bff; /* Cor da borda do botão ativo */
+}
+
+/* Estilos para os cartões de tarefa */
+.tarefa-card {
+    background-color: #fff; /* Cor de fundo do cartão */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tarefa-card:hover {
+    transform: translateY(-5px); /* Efeito de elevação ao passar o mouse */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Sombra aumentada ao passar o mouse */
+}
+
+/* Estilos para o título da tarefa */
+.tarefa-card h2 {
+    color: #333; /* Cor do texto */
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+/* Estilos para os detalhes da tarefa */
+.tarefa-card p {
+    color: #666; /* Cor do texto */
+    margin-bottom: 5px;
+}
+
+/* Estilos para o responsável pela tarefa */
+.responsavel-tarefa {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.responsavel-tarefa img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+/* Estilos para os botões de ação */
+.botoes-acao button {
+    margin-right: 10px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 20px;
+    background-color: #007bff; /* Cor de fundo do botão */
+    color: #fff; /* Cor do texto do botão */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: 'Arial', sans-serif; /* Fonte do texto */
+}
+
+.botoes-acao button:hover {
+    background-color: #0056b3; /* Cor de fundo do botão ao passar o mouse */
+}
+
+/* Estilos para os modais */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+}

@@ -27,9 +27,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $orcamentoProjeto = $_POST['orcamentoProjeto'];
         $recursosProjeto = $_POST['recursosProjeto'];
 
+        // Definindo o status como "Em Andamento"
+        $status = "Em Andamento";
+
         // Query SQL para inserir os dados do projeto no banco de dados
-        $sql = "INSERT INTO Projeto (Nome_Projeto, Tipo_Projeto, Data_inicio_Projeto, Data_Fim_Projeto, Resumo_Projeto, Riscos_Projeto, Orcamento_Projeto, Recursos_Projeto)
-                VALUES ('$nomeProjeto', '$tipoProjeto', '$dataInicio', '$dataFim', '$resumoProjeto', '$riscosProjeto', '$orcamentoProjeto', '$recursosProjeto')";
+        $sql = "INSERT INTO Projeto (Nome_Projeto, Tipo_Projeto, Data_inicio_Projeto, Data_Fim_Projeto, Resumo_Projeto, Riscos_Projeto, Orcamento_Projeto, Recursos_Projeto, Status_Projeto)
+                VALUES ('$nomeProjeto', '$tipoProjeto', '$dataInicio', '$dataFim', '$resumoProjeto', '$riscosProjeto', '$orcamentoProjeto', '$recursosProjeto', '$status')";
 
         if ($conn->query($sql) === TRUE) {
             header("Location: projetos.php");

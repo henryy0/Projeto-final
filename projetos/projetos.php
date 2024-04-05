@@ -20,7 +20,7 @@
         <!-- Filtro de projetos -->
         <div class="filtro-container">
             <button onclick="filtrarProjetos('todos')">Todos</button>
-            <button onclick="filtrarProjetos('em_andamento')">Em Andamento</button>
+            <button onclick="filtrarProjetos('em andamento')">Em Andamento</button>
             <button onclick="filtrarProjetos('concluido')">Concluído</button>
             <button onclick="filtrarProjetos('pausado')">Pausado</button>
         </div>
@@ -180,9 +180,9 @@
             <!-- Formulário de confirmação de pausa do projeto -->
             <form id="formPausarProjeto" action="pausar_projeto.php" method="POST">
                 <!-- Campo oculto para enviar o ID do projeto -->
-                <input type="hidden" id="idProjeto" name="id_projeto">
+                <input type="hidden" id="idProjetoPausar" name="idProjetoPausar">
                 <!-- Campo oculto para enviar o status -->
-                <input type="hidden" id="statusProjeto" name="status_projeto">
+                <input type="hidden" id="statusProjetoPausar" name="statusProjetoPausar">
                 <p>Tem certeza de que deseja pausar este projeto?</p>
                 <button type="submit">Sim, Pausar</button>
             </form>

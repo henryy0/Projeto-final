@@ -3,49 +3,65 @@
 require_once '../includes/db.php';
 
 // Verifique se o ID do projeto foi enviado via POST
-if(isset($_POST['idProjetoExcluir'])) {
-    $id_projeto = $_POST['idProjetoExcluir'];
+if(isset($_POST['idProjetoPausar'])) {
+    $id_projeto = $_POST['idProjetoPausar'];
 
-    // Query para excluir o projeto e suas tarefas associadas
-    $sql_excluir_tarefas = "DELETE FROM Tarefa WHERE Projeto_tarefa = ?";
-    $sql_excluir_projeto = "DELETE FROM Projeto WHERE ID_Projeto = ?";
+    // Consulta para verificar se o projeto já tem um status definido
+    $sql_verificar_status = "SELECT Status_Projeto FROM Projeto WHERE ID_Projeto = ?";
+    
+    // Preparar e executar a declaração preparada para verificar o status
+    $stmt_verificar_status = $conn->prepare($sql_verificar_status);
+    $stmt_verificar_status->bind_param('i', $id_projeto); // 'i' indica que o parâmetro é um inteiro
+    $stmt_verificar_status->execute();
+    $stmt_verificar_status->store_result();
 
-    // Preparar e executar a declaração preparada para excluir tarefas
-    $stmt_tarefas = $conn->prepare($sql_excluir_tarefas);
-    $stmt_tarefas->bind_param('i', $id_projeto); // 'i' indica que o parâmetro é um inteiro
-    $stmt_tarefas->execute();
-
-    // Verificar se ocorreu algum erro ao executar a declaração preparada
-    if ($stmt_tarefas->errno) {
-        echo "Erro ao excluir tarefas: " . $stmt_tarefas->error;
-        exit();
-    }
-
-    // Preparar e executar a declaração preparada para excluir o projeto
-    $stmt_projeto = $conn->prepare($sql_excluir_projeto);
-    $stmt_projeto->bind_param('i', $id_projeto); // 'i' indica que o parâmetro é um inteiro
-    $stmt_projeto->execute();
-
-    // Verificar se ocorreu algum erro ao executar a declaração preparada
-    if ($stmt_projeto->errno) {
-        echo "Erro ao excluir projeto: " . $stmt_projeto->error;
-        exit();
-    }
-
-    // Verificar se as operações foram bem-sucedidas
-    if ($stmt_tarefas->affected_rows > 0 && $stmt_projeto->affected_rows > 0) {
-        // Projeto e tarefas excluídas com sucesso
-        // Redirecionar para a página de projetos
-        header("Location: projetos.php");
-        exit();
+    // Verificar se o projeto já tem um status definido
+    if ($stmt_verificar_status->num_rows > 0) {
+        // O projeto já tem um status definido, então atualizaremos para 'pausado'
+        $sql_atualizar_status = "UPDATE Projeto SET Status_Projeto = 'Pausado' WHERE ID_Projeto = ?";
+        
+        // Preparar e executar a declaração preparada para atualizar o status
+        $stmt_atualizar_status = $conn->prepare($sql_atualizar_status);
+        $stmt_atualizar_status->bind_param('i', $id_projeto); // 'i' indica que o parâmetro é um inteiro
+        $stmt_atualizar_status->execute();
+        
+        // Verificar se a atualização foi bem-sucedida
+        if ($stmt_atualizar_status->affected_rows > 0) {
+            echo "Status do projeto atualizado para 'Pausado' com sucesso.";
+            // Redirecionar para a página projetos.php
+            header("Location: projetos.php");
+            exit();
+        } else {
+            echo "Erro ao atualizar o status do projeto para 'Pausado'.";
+        }
+        
+        // Fechar declarações preparadas
+        $stmt_atualizar_status->close();
     } else {
-        // Se não houve linhas afetadas
-        echo "Nenhum projeto ou tarefa encontrada para exclusão.";
+        // O projeto ainda não tem um status definido, então faremos uma inserção
+        $sql_inserir_status = "INSERT INTO Projeto (ID_Projeto, Status_Projeto) VALUES (?, 'Pausado')";
+        
+        // Preparar e executar a declaração preparada para inserir o status
+        $stmt_inserir_status = $conn->prepare($sql_inserir_status);
+        $stmt_inserir_status->bind_param('i', $id_projeto); // 'i' indica que o parâmetro é um inteiro
+        $stmt_inserir_status->execute();
+        
+        // Verificar se a inserção foi bem-sucedida
+        if ($stmt_inserir_status->affected_rows > 0) {
+            echo "Status 'Pausado' adicionado ao projeto com sucesso.";
+            // Redirecionar para a página projetos.php
+            header("Location: projetos.php");
+            exit();
+        } else {
+            echo "Erro ao adicionar o status 'Pausado' ao projeto.";
+        }
+        
+        // Fechar declarações preparadas
+        $stmt_inserir_status->close();
     }
-
-    // Fechar as declarações preparadas
-    $stmt_tarefas->close();
-    $stmt_projeto->close();
+    
+    // Fechar declarações preparadas
+    $stmt_verificar_status->close();
 } else {
     // Se o ID do projeto não foi enviado via POST
     echo "ID do projeto não fornecido.";

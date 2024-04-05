@@ -1,6 +1,6 @@
-// Função para abrir o modal de adicionar projeto
-function abrirModalAdicionar() {
-    document.getElementById('modalAdicionarProjeto').style.display = 'block';
+// Função para abrir o modal de adicionar tarefa
+function abrirModalAdicionarTarefa() {
+    document.getElementById('modalAdicionarTarefa').style.display = 'block';
 }
 
 // Função para fechar o modal de adicionar projeto
@@ -9,22 +9,22 @@ function fecharModalAdicionar() {
 }
 
 // Função para abrir o modal de pausar projeto e definir o ID do projeto no campo oculto
-function abrirModalPausar(idProjeto, statusProjeto) {
-    // Define o valor do campo oculto id_projeto no formulário
-    document.getElementById('idProjeto').value = idProjeto;
-    // Define o valor do campo oculto status_projeto no formulário
-    document.getElementById('statusProjeto').value = statusProjeto;
+function abrirModalPausar(idProjeto) {
+    // Define o valor do campo oculto idProjetoPausar no formulário
+    document.getElementById('idProjetoPausar').value = idProjeto;
     // Exibe o modal
     document.getElementById('modalPausarProjeto').style.display = 'block';
 }
+
 
 // Função para fechar o modal de pausar projeto
 function fecharModalPausar() {
     document.getElementById('modalPausarProjeto').style.display = 'none';
 }
 
+
 // Função para abrir o modal de excluir projeto e definir o ID do projeto e status
-function abrirModalExcluir(idProjeto, statusProjeto) {
+function abrirModalExcluir(idProjeto) {
     // Define o valor do campo oculto idProjetoExcluir no formulário
     document.getElementById('idProjetoExcluir').value = idProjeto;
     // Exibe o modal
@@ -37,9 +37,14 @@ function fecharModalExcluir() {
 }
 
 // Função para abrir o modal de editar projeto
+// Função para abrir o modal de editar projeto e definir o ID do projeto
 function abrirModalEditar(idProjeto) {
+    // Define o valor do campo oculto idProjetoEditar no formulário
+    document.getElementById('idProjetoEditar').value = idProjeto;
+    // Exibe o modal
     document.getElementById('modalEditarProjeto').style.display = 'block';
 }
+
 
 // Função para fechar o modal de editar projeto
 function fecharModalEditar() {
@@ -49,17 +54,20 @@ function fecharModalEditar() {
 // Função para filtrar os projetos com base no status
 function filtrarProjetos(status) {
     const projetos = document.querySelectorAll('.projeto-card');
+    const statusLowerCase = status.toLowerCase(); // Converter para minúsculas
+
     projetos.forEach(projeto => {
         const projetoStatus = projeto.getAttribute('data-status').toLowerCase(); // Convertendo para minúsculas para comparação
-        if (status === 'todos' || projetoStatus === status) {
+        if (statusLowerCase === 'todos' || projetoStatus === statusLowerCase) {
             projeto.style.display = 'block';
-        } else if (status === 'pausado' && projetoStatus === status) {
-            projeto.style.display = 'block'; // Exibe os projetos pausados
+        } else if (statusLowerCase === 'em andamento' && projetoStatus === 'em andamento') {
+            projeto.style.display = 'block'; // Exibe os projetos em andamento
         } else {
             projeto.style.display = 'none';
         }
     });
 }
+
 
 // Event listener para mostrar/esconder detalhes
 document.addEventListener("DOMContentLoaded", function() {
@@ -77,3 +85,4 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
+
