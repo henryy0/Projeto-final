@@ -9,8 +9,7 @@ function fecharModalAdicionarTarefa() {
 }
 
 // Função para abrir o modal de editar tarefa
-function abrirModalEditarTarefa(idTarefa) {
-    // Aqui você pode adicionar lógica para preencher o formulário de edição com os dados da tarefa selecionada
+function abrirModalEditarTarefa() {
     document.getElementById('modalEditarTarefa').style.display = 'block';
 }
 
@@ -19,9 +18,30 @@ function fecharModalEditarTarefa() {
     document.getElementById('modalEditarTarefa').style.display = 'none';
 }
 
+// Função para abrir o modal de pausar tarefa
+function abrirModalPausarTarefa(idTarefa) {
+    document.getElementById('idTarefaPausar').value = idTarefa;
+    document.getElementById('modalPausarTarefa').style.display = 'block';
+}
+
+// Função para fechar o modal de pausar tarefa
+function fecharModalPausarTarefa() {
+    document.getElementById('modalPausarTarefa').style.display = 'none';
+}
+
+// Função para abrir o modal de concluir tarefa
+function abrirModalConcluirTarefa(idTarefa) {
+    document.getElementById('idTarefaConcluir').value = idTarefa;
+    document.getElementById('modalConcluirTarefa').style.display = 'block';
+}
+
+// Função para fechar o modal de concluir tarefa
+function fecharModalConcluirTarefa() {
+    document.getElementById('modalConcluirTarefa').style.display = 'none';
+}
+
 // Função para abrir o modal de excluir tarefa
 function abrirModalExcluirTarefa(idTarefa) {
-    // Defina o ID da tarefa a ser excluída no campo oculto do formulário de exclusão
     document.getElementById('idTarefaExcluir').value = idTarefa;
     document.getElementById('modalExcluirTarefa').style.display = 'block';
 }
@@ -35,8 +55,10 @@ function fecharModalExcluirTarefa() {
 function filtrarTarefas(status) {
     const tarefas = document.querySelectorAll('.tarefa-card');
     tarefas.forEach(tarefa => {
-        const tarefaStatus = tarefa.getAttribute('data-status');
-        if (status === 'todos' || tarefaStatus === status) {
+        const tarefaStatus = tarefa.getAttribute('data-status').toLowerCase(); // Convertendo para minúsculas
+        if (status.toLowerCase() === 'todos' || tarefaStatus === status.toLowerCase()) {
+            tarefa.style.display = 'block';
+        } else if (status.toLowerCase() === 'concluido' && tarefaStatus === 'concluído') {
             tarefa.style.display = 'block';
         } else {
             tarefa.style.display = 'none';
@@ -44,8 +66,11 @@ function filtrarTarefas(status) {
     });
 }
 
-// Função para marcar uma tarefa como concluída
-function concluirTarefa(idTarefa) {
-    // Aqui você pode adicionar lógica para marcar a tarefa como concluída
-    console.log('Tarefa concluída com sucesso:', idTarefa);
-}
+// Adicione este código em algum lugar onde você inicializa sua aplicação para garantir que o filtro seja aplicado corretamente
+document.addEventListener('DOMContentLoaded', function() {
+    const filtroStatus = document.getElementById('filtroStatus');
+    filtroStatus.addEventListener('change', function() {
+        const statusSelecionado = filtroStatus.value;
+        filtrarTarefas(statusSelecionado);
+    });
+});

@@ -1,15 +1,21 @@
 <?php
-// Função para calcular a porcentagem de conclusão do projeto
-function calcularPorcentagemConclusao($numTarefasConcluidas, $numTotalTarefas) {
-    if ($numTotalTarefas > 0) {
-        return round(($numTarefasConcluidas / $numTotalTarefas) * 100, 2);
-    } else {
-        return 0;
-    }
-}
-
 // Inclua o arquivo de conexão com o banco de dados
 require_once '../includes/db.php';
+
+// Função para calcular a porcentagem de conclusão do projeto
+function calcularPorcentagemConclusao($porcentagemConclusao) {
+    return $porcentagemConclusao;
+}
+
+// Função para atualizar o status do projeto no banco de dados
+function atualizarStatusProjeto($id_projeto, $novo_status) {
+    global $conn;
+    $id_projeto = $conn->real_escape_string($id_projeto);
+    $novo_status = $conn->real_escape_string($novo_status);
+
+    $query = "UPDATE Projeto SET Status_Projeto = '$novo_status' WHERE ID_Projeto = $id_projeto";
+    $conn->query($query);
+}
 
 // Consulta SQL para selecionar todos os projetos
 $sql = "SELECT * FROM Projeto";
@@ -43,13 +49,12 @@ if ($resultado && $resultado->num_rows > 0) {
         if ($resultado_equipe && $resultado_equipe->num_rows > 0) {
             $equipe_info = $resultado_equipe->fetch_assoc();
 
-            // Verifica se a chave 'equipe_lider_id' existe em $equipe_info
             if(isset($equipe_info['equipe_lider_id'])){
                 $equipe_lider_id = $equipe_info['equipe_lider_id'];
             }else{
                 $equipe_lider_id = null;
             }
-            
+
             // Consulta SQL para selecionar os membros da equipe
             $sql_membros_equipe = "SELECT * FROM Usuario WHERE id_usuario IN (SELECT equipe_membro_id FROM Equipe_Membro WHERE equipe_id = {$equipe_info['equipe_id']})";
             $resultado_membros_equipe = $conn->query($sql_membros_equipe);
@@ -70,6 +75,15 @@ if ($resultado && $resultado->num_rows > 0) {
         $row['tarefas'] = $tarefas;
         $row['equipe'] = $equipe;
 
+        // Calcular a porcentagem de conclusão do projeto
+        $porcentagem_conclusao = calcularPorcentagemConclusao($row['Porcentagem_Conclusao']);
+
+        // Verificar se a porcentagem de conclusão é 100% e atualizar o status do projeto
+        if ($porcentagem_conclusao == 100 && $row['Status_Projeto'] != 'Concluído') {
+            atualizarStatusProjeto($row['ID_Projeto'], 'Concluído');
+            $row['Status_Projeto'] = 'Concluído'; // Atualiza localmente para evitar mais consultas
+        }
+
         // Adicionar projeto ao array de projetos
         $projetos[] = $row;
     }
@@ -81,3 +95,4 @@ $conn->close();
 // Retornar projetos
 return $projetos;
 ?>
+

@@ -4,6 +4,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Inclui o arquivo de conexão com o banco de dados
     require_once '../includes/db.php';
 
+    // Print_r para verificar o que está sendo enviado pelo formulário
+    echo '<pre>';
+    print_r($_POST);
+    echo '</pre>';
+
     // Captura os dados do formulário
     $nomeTarefa = $_POST['nomeTarefa'];
     $dataInicio = $_POST['dataInicio'];
@@ -22,8 +27,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Verifica se a preparação da consulta foi bem-sucedida
     if ($stmt) {
         // Define os parâmetros da consulta
-        $statusTarefa = 'Em Andamento'; // Define o status da tarefa como 'Em Andamento' ao adicionar
-        $stmt->bind_param('ssssiii', $nomeTarefa, $dataInicio, $dataFim, $descricaoTarefa, $statusTarefa, $responsavelTarefa, $projetoTarefa);
+        $statusTarefa = 'Em Andamento';
+        $stmt->bind_param('sssssis', $nomeTarefa, $dataInicio, $dataFim, $descricaoTarefa, $statusTarefa, $responsavelTarefa, $projetoTarefa);
+
 
         // Executa a consulta
         if ($stmt->execute()) {

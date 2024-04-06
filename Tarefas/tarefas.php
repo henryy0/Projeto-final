@@ -19,13 +19,12 @@
         <!-- Botões de filtro -->
         <div class="filtro-container">
             <button onclick="filtrarTarefas('todos')">Todos</button>
-            <button onclick="filtrarTarefas('em_andamento')">Em Andamento</button>
+            <button onclick="filtrarTarefas('em andamento')">Em Andamento</button>
             <button onclick="filtrarTarefas('concluido')">Concluído</button>
             <button onclick="filtrarTarefas('pausado')">Pausado</button>
         </div>
 
-         <!-- Container para as tarefas -->
-         <div class="tarefa-container">
+        <div class="tarefa-container">
             <?php
             // Incluir o arquivo externo com a lógica PHP para listar as tarefas do projeto
             $tarefas = require_once('listar_tarefas.php');
@@ -34,6 +33,7 @@
             ?>
                 <div class="tarefa-card" data-status="<?= strtolower($tarefa['Status_Tarefa']) ?>">
                     <h2><?= $tarefa['Nome_Tarefa'] ?></h2>
+                    <p><strong>Projeto:</strong> <?= $tarefa['Nome_Projeto'] ?></p> <!-- Novo trecho para exibir o nome do projeto -->
                     <p><strong>Data de Início:</strong> <?= $tarefa['Data_Inicio_Tarefa'] ?></p>
                     <p><strong>Data de Término:</strong> <?= $tarefa['Data_Fim_Tarefa'] ?></p>
                     <p><strong>Status:</strong> <?= $tarefa['Status_Tarefa'] ?></p>
@@ -51,14 +51,15 @@
 
                     <!-- Botões de Ação -->
                     <div class="botoes-acao">
-                        <button onclick="concluirTarefa(<?= $tarefa['ID_Tarefa'] ?>)">Concluir</button>
+                        <button onclick="abrirModalConcluirTarefa(<?= $tarefa['ID_Tarefa'] ?>)">Concluir</button>
                         <button onclick="abrirModalEditarTarefa(<?= $tarefa['ID_Tarefa'] ?>)">Editar</button>
+                        <button onclick="abrirModalPausarTarefa(<?= $tarefa['ID_Tarefa'] ?>)">Pausar</button>
                         <button onclick="abrirModalExcluirTarefa(<?= $tarefa['ID_Tarefa'] ?>)">Excluir</button>
                     </div>
                 </div>
             <?php endforeach; ?>
         </div>
-    </div>
+
 
 
     <!-- Modal para Adicionar Tarefa -->
@@ -134,6 +135,36 @@
             </form>
         </div>
     </div>
+
+    <!-- Modal para Concluir Tarefa -->
+    <div id="modalConcluirTarefa" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModalConcluirTarefa()">&times;</span>
+            <h2>Concluir Tarefa</h2>
+            <form id="formConcluirTarefa" action="concluir_tarefa.php" method="POST">
+                <p>Tem certeza de que deseja marcar esta tarefa como concluída?</p>
+                <!-- Campo oculto para enviar o ID da tarefa a ser concluída -->
+                <input type="hidden" id="idTarefaConcluir" name="idTarefaConcluir">
+                <button type="submit">Sim, Concluir</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para Pausar Tarefa -->
+    <div id="modalPausarTarefa" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModalPausarTarefa()">&times;</span>
+            <h2>Pausar Tarefa</h2>
+            <!-- Formulário de confirmação de pausa da tarefa -->
+            <form id="formPausarTarefa" action="pausar_tarefa.php" method="POST">
+                <p>Tem certeza de que deseja pausar esta tarefa?</p>
+                <!-- Campo oculto para enviar o ID da tarefa a ser pausada -->
+                <input type="hidden" id="idTarefaPausar" name="idTarefaPausar">
+                <button type="submit">Sim, Pausar</button>
+            </form>
+        </div>
+    </div>
+
 
     <!-- Modal para Excluir Tarefa -->
     <div id="modalExcluirTarefa" class="modal" style="display: none;">

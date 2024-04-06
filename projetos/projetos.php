@@ -14,7 +14,7 @@
     <div class="container">
         <h1>Projetos</h1>
 
-        <!-- Botão para adicionar projeto -->
+       <!-- Botão para adicionar projeto -->
         <button onclick="abrirModalAdicionar()">Adicionar Projeto</button>
 
         <!-- Filtro de projetos -->
@@ -30,10 +30,10 @@
             <?php
             // Incluir o arquivo externo com a lógica PHP
             $projetos = require_once('listar_projetos.php');
-
+            
             foreach ($projetos as $projeto) :
                 // Calcular a porcentagem de conclusão do projeto
-                $porcentagem_conclusao = calcularPorcentagemConclusao($projeto['Num_Tarefas_Concluidas'], $projeto['Num_Total_Tarefas']);
+                $porcentagem_conclusao = calcularPorcentagemConclusao($projeto['Porcentagem_Conclusao']);
             ?>
                 <div class="projeto-card" data-status="<?= strtolower($projeto['Status_Projeto']) ?>">
                     <h2><?= $projeto['Nome_Projeto'] ?></h2>
