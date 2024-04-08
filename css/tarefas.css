@@ -201,6 +201,14 @@ button:hover {
     background: linear-gradient(to right, #045A72, #073B4C); /* Gradiente azul escuro */
 }
 
+.projeto-card .detalhes-projeto {
+    display: none;
+}
+
+.detalhes-projeto {
+    display: none !important;
+}
+
 
 /* Responsividade */
 @media screen and (max-width: 768px) {

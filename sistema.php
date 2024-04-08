@@ -45,7 +45,7 @@ session_start();
                         <a class="nav-link" href="equipe/equipe.php">Equipe</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="chat/chat.php">Chat</a>
+                        <a class="nav-link" href="chat/home2.php">Chat</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="calendario/calendario.php">Calendário</a>

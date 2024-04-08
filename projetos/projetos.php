@@ -14,7 +14,7 @@
     <div class="container">
         <h1>Projetos</h1>
 
-       <!-- Botão para adicionar projeto -->
+        <!-- Botão para adicionar projeto -->
         <button onclick="abrirModalAdicionar()">Adicionar Projeto</button>
 
         <!-- Filtro de projetos -->
@@ -30,10 +30,8 @@
             <?php
             // Incluir o arquivo externo com a lógica PHP
             $projetos = require_once('listar_projetos.php');
-            
+
             foreach ($projetos as $projeto) :
-                // Calcular a porcentagem de conclusão do projeto
-                $porcentagem_conclusao = calcularPorcentagemConclusao($projeto['Porcentagem_Conclusao']);
             ?>
                 <div class="projeto-card" data-status="<?= strtolower($projeto['Status_Projeto']) ?>">
                     <h2><?= $projeto['Nome_Projeto'] ?></h2>
@@ -45,7 +43,7 @@
                     <p><strong>Riscos:</strong> <?= $projeto['Riscos_Projeto'] ?></p>
                     <p><strong>Orçamento:</strong> <?= $projeto['Orcamento_Projeto'] ?></p>
                     <p><strong>Recursos:</strong> <?= $projeto['Recursos_Projeto'] ?></p>
-                    <p><strong>Porcentagem de Conclusão:</strong> <?= $porcentagem_conclusao ?>%</p>
+                    <p><strong>Porcentagem de Conclusão:</strong> <?= isset($projeto['Porcentagem_Conclusao']) ? calcularPorcentagemConclusao($projeto['Porcentagem_Conclusao']) . '%' : 'N/A' ?></p>
 
                     <!-- Botões de Ação -->
                     <div class="botoes-acao">
@@ -58,7 +56,7 @@
                     <button class="toggleDetails">Mostrar Detalhes</button>
 
                     <!-- Detalhes do Projeto (inicialmente oculto) -->
-                    <div class="detalhes-projeto collapse">
+                    <div class="detalhes-projeto">
                         <!-- Tarefas do Projeto -->
                         <div class="tarefas-container">
                             <h3>Tarefas</h3>
@@ -72,12 +70,16 @@
                         <!-- Informações da Equipe -->
                         <div class="equipe-info">
                             <h3>Equipe</h3>
-                            <p><strong>Líder da Equipe:</strong> <?= $projeto['equipe']['equipe_lider_id'] ?></p>
-                            <p><strong>Membros da Equipe:</strong>
-                                <?php foreach ($projeto['equipe']['membros'] as $membro) : ?>
-                                    <?= $membro['nome_usuario'] ?>,
-                                <?php endforeach; ?>
-                            </p>
+                            <?php if (isset($projeto['equipe']) && isset($projeto['equipe']['equipe_lider_id']) && isset($projeto['equipe']['membros'])) : ?>
+                                <p><strong>Líder da Equipe:</strong> <?= $projeto['equipe']['equipe_lider_id'] ?></p>
+                                <p><strong>Membros da Equipe:</strong>
+                                    <?php foreach ($projeto['equipe']['membros'] as $membro) : ?>
+                                        <?= $membro['nome_usuario'] ?>,
+                                    <?php endforeach; ?>
+                                </p>
+                            <?php else : ?>
+                                <p><strong>Nenhuma informação de equipe disponível.</strong></p>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -85,8 +87,9 @@
         </div>
     </div>
 
-        <!-- Modal para Adicionar Projeto -->
-        <div id="modalAdicionarProjeto" class="modal">
+    <!-- Modais para Adicionar, Editar, Excluir e Pausar Projeto -->
+    <!-- Modal para Adicionar Projeto -->
+    <div id="modalAdicionarProjeto" class="modal">
         <div class="modal-content">
             <span class="close" onclick="fecharModalAdicionar('modalAdicionarProjeto')">&times;</span>
             <h2>Adicionar Projeto</h2>
@@ -124,7 +127,7 @@
     <!-- Modal para Editar Projeto -->
     <div id="modalEditarProjeto" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="fecharModalEditar('modalAdicionarProjeto')">&times;</span>
+            <span class="close" onclick="fecharModalEditar('modalEditarProjeto')">&times;</span>
             <h2>Editar Projeto</h2>
             <!-- Formulário de edição de projeto -->
             <form id="formEditarProjeto" action="editar_projeto.php" method="POST">
@@ -161,7 +164,7 @@
     <!-- Modal para Excluir Projeto -->
     <div id="modalExcluirProjeto" class="modal">
         <div class="modal-content">
-            <span class="close" onclick=" fecharModalExcluir('#modalExcluirProjeto')">&times;</span>
+            <span class="close" onclick="fecharModalExcluir('modalExcluirProjeto')">&times;</span>
             <h2>Excluir Projeto</h2>
             <!-- Formulário de confirmação de exclusão do projeto -->
             <form id="formExcluirProjeto" action="excluir_projeto.php" method="POST">
@@ -175,7 +178,7 @@
     <!-- Modal para Pausar Projeto -->
     <div id="modalPausarProjeto" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="fecharModalPausar()">&times;</span>
+            <span class="close" onclick="fecharModalPausar('modalPausarProjeto')">&times;</span>
             <h2>Pausar Projeto</h2>
             <!-- Formulário de confirmação de pausa do projeto -->
             <form id="formPausarProjeto" action="pausar_projeto.php" method="POST">
@@ -189,7 +192,14 @@
         </div>
     </div>
 
-    <script src="../js/projetos.js"></script> <!-- Script externo para interatividade -->
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Bootstrap JavaScript (necessário para o Collapse) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Script para interatividade -->
+    <script src="../js/projetos.js"></script>
 </body>
 
 </html>

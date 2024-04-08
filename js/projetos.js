@@ -47,6 +47,11 @@ function fecharModalEditar() {
     document.getElementById('modalEditarProjeto').style.display = 'none';
 }
 
+// Função para remover acentos de uma string
+function removerAcentos(s) {
+    return s.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
 // Função para filtrar os projetos com base no status
 function filtrarProjetos(status) {
     const projetos = document.querySelectorAll('.projeto-card');
@@ -54,12 +59,24 @@ function filtrarProjetos(status) {
 
     projetos.forEach(projeto => {
         const projetoStatus = projeto.getAttribute('data-status').toLowerCase(); // Convertendo para minúsculas para comparação
-        if (statusLowerCase === 'todos' || projetoStatus === statusLowerCase) {
+        const projetoStatusSemAcento = removerAcentos(projetoStatus);
+        const statusSelecionadoSemAcento = removerAcentos(statusLowerCase);
+        
+        if (statusSelecionadoSemAcento === 'todos' || projetoStatusSemAcento === statusSelecionadoSemAcento) {
             projeto.style.display = 'block';
-        } else if (statusLowerCase === 'em andamento' && projetoStatus === 'em andamento') {
-            projeto.style.display = 'block'; // Exibe os projetos em andamento
+        } else if (statusSelecionadoSemAcento === 'concluido' && projetoStatusSemAcento === 'concluído') {
+            projeto.style.display = 'block';
         } else {
             projeto.style.display = 'none';
         }
     });
 }
+
+// Adicione este código em algum lugar onde você inicializa sua aplicação para garantir que o filtro seja aplicado corretamente
+document.addEventListener('DOMContentLoaded', function() {
+    const filtroStatus = document.getElementById('filtroStatus');
+    filtroStatus.addEventListener('change', function() {
+        const statusSelecionado = filtroStatus.value;
+        filtrarProjetos(statusSelecionado);
+    });
+});
