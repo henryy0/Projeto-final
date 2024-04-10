@@ -23,13 +23,14 @@ h1 {
     letter-spacing: 2px;
 }
 
-/* Estilo para os botões */
+/* Estilos para os botões */
 button {
-    background-color: #4CAF50;
+    background: linear-gradient(to right, #2980b9, #2c3e50); /* Gradiente azul */
     color: white;
     padding: 12px 24px;
     border: none;
-    border-radius: 30px;
+    border-radius: 50px  !important; /* Botões arredondados */
+    margin-bottom: 3px !important;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
     font-size: 18px;
@@ -38,9 +39,10 @@ button {
 }
 
 button:hover {
-    background-color: #45a049;
+    background: linear-gradient(to right, #045A72, #073B4C); /* Gradiente azul escuro */
     transform: translateY(-2px);
 }
+
 
 /* Estilo para os cartões de equipe */
 .equipe-card {
@@ -59,7 +61,8 @@ button:hover {
 /* Estilo para os detalhes da equipe */
 .detalhes-equipe {
     margin-top: 20px;
-    border-top: 2px solid #4CAF50;
+    border-top: 2px solid  #045A72;
+    border-radius: 20px;
     padding-top: 20px;
 }
 
@@ -102,6 +105,7 @@ button:hover {
 }
 
 /* Estilo para o modal */
+/* Estilos para o modal */
 .modal {
     display: none;
     position: fixed;
@@ -111,25 +115,62 @@ button:hover {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
-/* Estilo para o conteúdo do modal */
 .modal-content {
     background-color: #fefefe;
-    margin: 10% auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     padding: 20px;
     border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 90%; /* Alterado para 90% da largura da tela */
+    max-width: 600px;
 }
 
-/* Estilo para o botão de fechar do modal */
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+.modal-content h2 {
+    font-size: 24px; /* Alterado o tamanho da fonte */
+    margin: 0 0 10px; /* Ajustado o espaçamento inferior */
 }
+
+.modal-header,
+.modal-footer {
+    padding: 10px; /* Reduzido o padding */
+}
+
+.modal-body {
+    padding: 10px 0; /* Reduzido o padding vertical */
+}
+
+.modal-content label {
+    margin-bottom: 5px; /* Reduzido o espaçamento */
+    font-size: 16px; /* Ajustado o tamanho da fonte */
+}
+
+.modal-content input[type="text"],
+.modal-content input[type="date"],
+.modal-content textarea,
+.modal-content input[type="number"] {
+    width: calc(100% - 20px);
+    padding: 8px; /* Reduzido o padding */
+    margin-bottom: 10px; /* Reduzido o espaçamento */
+    font-size: 16px; /* Ajustado o tamanho da fonte */
+}
+
+.modal-content button {
+    padding: 10px 20px; /* Reduzido o padding */
+    font-size: 16px; /* Ajustado o tamanho da fonte */
+    margin-top: 10px; /* Ajustado o espaçamento superior */
+    margin-left: 0; /* Removido o ajuste de margem esquerda */
+}
+
+.close {
+    font-size: 20px; /* Ajustado o tamanho da fonte */
+}
+
 
 .close:hover,
 .close:focus {
@@ -156,7 +197,6 @@ select {
 /* Estilo para os selects */
 select {
     appearance: none;
-    background-image: url('data:image/svg+xml;utf8,<svg fill="%23333" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path d="M7 10l5 5 5-5z"/></svg>');
     background-repeat: no-repeat;
     background-position: right 12px center;
     background-size: 16px;

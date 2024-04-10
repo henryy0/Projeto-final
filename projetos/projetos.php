@@ -70,13 +70,17 @@
                         <!-- Informações da Equipe -->
                         <div class="equipe-info">
                             <h3>Equipe</h3>
-                            <?php if (isset($projeto['equipe']) && isset($projeto['equipe']['equipe_lider_id']) && isset($projeto['equipe']['membros'])) : ?>
-                                <p><strong>Líder da Equipe:</strong> <?= $projeto['equipe']['equipe_lider_id'] ?></p>
-                                <p><strong>Membros da Equipe:</strong>
-                                    <?php foreach ($projeto['equipe']['membros'] as $membro) : ?>
-                                        <?= $membro['nome_usuario'] ?>,
-                                    <?php endforeach; ?>
-                                </p>
+                            <?php if (isset($projeto['equipe']) && !empty($projeto['equipe'])) : ?>
+                                <?php if (isset($projeto['equipe']['lider'])) : ?>
+                                    <p><strong>Líder da Equipe:</strong> <?= $projeto['equipe']['lider']['nome_usuario'] ?></p>
+                                <?php endif; ?>
+                                <?php if (isset($projeto['equipe']['membros'])) : ?>
+                                    <p><strong>Membros da Equipe:</strong>
+                                        <?php foreach ($projeto['equipe']['membros'] as $membro) : ?>
+                                            <?= $membro['nome_usuario'] ?>,
+                                        <?php endforeach; ?>
+                                    </p>
+                                <?php endif; ?>
                             <?php else : ?>
                                 <p><strong>Nenhuma informação de equipe disponível.</strong></p>
                             <?php endif; ?>
