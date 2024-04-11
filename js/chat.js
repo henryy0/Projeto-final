@@ -16,12 +16,21 @@ $(document).ready(function(){
 
     // Função para carregar informações do destinatário e mensagens do chat
     function loadRecipientInfoAndMessages(userId, userName){
-        // Atualizar o cabeçalho do chat com as informações do destinatário
-        $('#recipientInfo').html('<img src="recipient_picture.jpg" alt="Recipient Picture"><h3>' + userName + '</h3>');
-        // Atualiza o campo oculto com o ID do destinatário
-        $('#recipientId').val(userId);
-        // Carregar mensagens do chat
-        loadChatMessages(userId);
+        // Atualizar o cabeçalho do chat com as informações do destinatário, incluindo o último acesso
+        $.ajax({
+            url: 'ajax/update_last_seen.php', // Endpoint para obter o último acesso do destinatário
+            method: 'POST',
+            data: {recipient_id: userId},
+            success: function(data){
+                var lastSeen = data; // Último acesso retornado do servidor
+                var recipientInfoHtml = '<img src="recipient_picture.jpg" alt="Recipient Picture"><h3>' + userName + '</h3><p>Último Acesso: ' + lastSeen + '</p>';
+                $('#recipientInfo').html(recipientInfoHtml);
+                // Atualiza o campo oculto com o ID do destinatário
+                $('#recipientId').val(userId);
+                // Carregar mensagens do chat
+                loadChatMessages(userId);
+            }
+        });
     }
 
     // Função para carregar mensagens do chat

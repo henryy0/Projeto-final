@@ -1,9 +1,4 @@
 <?php
-// Verifica se a sessão não está definida e, em seguida, a inicia
-if (!isset($_SESSION)) {
-    session_start();
-}
-
 // Verifica se o usuário está logado
 if (isset($_SESSION['id_usuario'])) {
     // Inclui o arquivo de conexão com o banco de dados
@@ -11,24 +6,33 @@ if (isset($_SESSION['id_usuario'])) {
 
     try {
         // Obtém o ID do usuário logado da SESSÃO
-        $id = $_SESSION['id_usuario'];
+        $id_usuario = $_SESSION['id_usuario'];
 
-        // Prepara e executa a consulta para atualizar o campo 'ultimo_acesso'
-        $sql = "UPDATE Usuario
-                SET ultimo_acesso = CURRENT_TIMESTAMP
-                WHERE id_usuario = ?";
+        // Prepara a consulta para recuperar o último acesso do usuário
+        $sql = "SELECT ultimo_acesso FROM Usuario WHERE id_usuario = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->execute([$id]);
+        $stmt->bind_param("i", $id_usuario);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        // Verifica se há resultados
+        if ($result->num_rows > 0) {
+            // Recupera o último acesso do resultado da consulta
+            $row = $result->fetch_assoc();
+            $ultimo_acesso = $row['ultimo_acesso'];
+
+            // Exibe o último acesso na interface do usuário
+            echo "Último Acesso: " . $ultimo_acesso;
+        } else {
+            echo "Nenhum resultado encontrado";
+        }
+
+        // Fecha a conexão com o banco de dados
+        $stmt->close();
+        $conn->close();
     } catch (PDOException $e) {
         // Em caso de erro, exibe uma mensagem de erro ou faz o tratamento adequado
-        echo "Erro ao atualizar último acesso: " . $e->getMessage();
-    } finally {
-        // Fecha a conexão com o banco de dados
-        $conn = null;
+        echo "Erro ao recuperar último acesso: " . $e->getMessage();
     }
-} else {
-    // Redireciona para a página de login se o usuário não estiver logado
-    header("Location: ../../index.php");
-    exit;
 }
 ?>
