@@ -37,8 +37,7 @@ CREATE TABLE IF NOT EXISTS Equipe (
     lider_email VARCHAR(100),
     projeto_atribuido_id INT,
     data_criacao DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (equipe_lider_id) REFERENCES Usuario(id_usuario), -- Adicionando chave estrangeira para líder da equipe
-    FOREIGN KEY (projeto_atribuido_id) REFERENCES Projeto(ID_Projeto) -- Adicionando chave estrangeira para projeto atribuído
+    FOREIGN KEY (equipe_lider_id) REFERENCES Usuario(id_usuario) -- Adicionando chave estrangeira para líder da equipe
 );
 
 CREATE TABLE IF NOT EXISTS Equipe_Projeto (
@@ -75,16 +74,11 @@ CREATE TABLE IF NOT EXISTS Equipe_Membro (
 );
 
 CREATE TABLE IF NOT EXISTS Calendario (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_calendario INT AUTO_INCREMENT PRIMARY KEY,
     titulo VARCHAR(255) NOT NULL,
-    Data DATE NOT NULL,
-    data_criacao DATETIME NOT NULL,
-    modificado DATETIME NOT NULL,
-    status_calendario TINYINT(1) NOT NULL DEFAULT 1 COMMENT '1=Ativo | 0=Inativo'
+	inicio date DEFAULT NULL,
+	fim date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-
-
 
 CREATE TABLE IF NOT EXISTS Conversas (
     id_conversa INT AUTO_INCREMENT PRIMARY KEY,

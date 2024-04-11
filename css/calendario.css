@@ -1,0 +1,130 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+#calendar {
+    max-width: 1100px;
+    margin: 20px auto;
+    background-color: #fff;
+    border-radius: 30px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+}
+
+.fc-header-toolbar {
+    background: linear-gradient(to right, #007bff, #00bfff);
+    color: #fff;
+    border-radius: 30px 30px 0 0;
+    padding: 30px;
+    margin-bottom: 40px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.fc-header-toolbar button {
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    margin: 0 15px;
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+.fc-header-toolbar button:hover {
+    color: #f0f0f0;
+}
+
+.fc-center h2 {
+    font-size: 42px;
+    margin: 0;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.fc-button {
+    background: linear-gradient(to right, #007bff, #00bfff);
+    color: #fff;
+    border: none;
+    border-radius: 15px;
+    padding: 20px 40px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-right: 15px;
+    transition: all 0.3s ease;
+}
+
+.fc-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.fc-button.active, .fc-button:active {
+    background: linear-gradient(to right, #00bfff, #007bff);
+}
+
+.fc-day-header {
+    background: linear-gradient(to right, #007bff, #00bfff);
+    color: #fff;
+    font-weight: bold;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+}
+
+.fc-content {
+    border: none;
+}
+
+.fc-time {
+    font-size: 18px;
+    color: #666;
+}
+
+.fc-day-number {
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+}
+
+.fc-event {
+    background: linear-gradient(to right, #007bff, #00bfff);
+    color: #fff;
+    border: none;
+    border-radius: 15px;
+    padding: 20px 40px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-bottom: 30px;
+    transition: all 0.3s ease;
+}
+
+.fc-event:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.fc-event-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.fc-event-dot {
+    width: 18px;
+    height: 18px;
+    background: linear-gradient(to right, #007bff, #00bfff);
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.fc-event-time {
+    margin-right: 10px;
+}
+
+.fc-axis {
+    font-size: 18px;
+}
