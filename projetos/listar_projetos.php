@@ -7,18 +7,19 @@ function calcularPorcentagemConclusao($porcentagemConclusao) {
     return $porcentagemConclusao;
 }
 
-// Consulta SQL para selecionar todos os projetos com informações da equipe
+// Consulta SQL para selecionar todos os projetos com informações da equipe e membros
 $sql = "SELECT p.*, e.equipe_id AS equipe_id, e.equipe_nome AS equipe_nome,
                e.equipe_lider_id AS equipe_lider_id, u.nome_usuario AS nome_lider,
-               GROUP_CONCAT(DISTINCT em.usuario_id) AS membros
+               GROUP_CONCAT(DISTINCT CASE WHEN em.usuario_id != e.equipe_lider_id THEN em.usuario_id END SEPARATOR ',') AS membros_id,
+               GROUP_CONCAT(DISTINCT CASE WHEN em.usuario_id != e.equipe_lider_id THEN u2.nome_usuario END SEPARATOR ',') AS membros_nome
         FROM Projeto p
         LEFT JOIN Equipe_Projeto ep ON p.ID_Projeto = ep.projeto_id
         LEFT JOIN Equipe e ON ep.equipe_id = e.equipe_id
         LEFT JOIN Usuario u ON e.equipe_lider_id = u.id_usuario
         LEFT JOIN Equipe_Membro em ON e.equipe_id = em.equipe_id
-        GROUP BY p.ID_Projeto, e.equipe_id";
+        LEFT JOIN Usuario u2 ON em.usuario_id = u2.id_usuario
+        GROUP BY p.ID_Projeto";
 
-// Executar a consulta SQL
 $resultado = $conn->query($sql);
 
 // Array para armazenar os projetos
@@ -48,12 +49,27 @@ if ($resultado && $resultado->num_rows > 0) {
 
         // Verificar se a porcentagem de conclusão é 100% e atualizar o status do projeto
         if ($porcentagem_conclusao == 100 && $row['Status_Projeto'] != 'Concluído') {
-            if (atualizarStatusProjeto($row['ID_Projeto'], 'Concluído')) {
-                $row['Status_Projeto'] = 'Concluído'; // Atualiza localmente para evitar mais consultas
-            } else {
-                echo "Erro ao atualizar o status do projeto.";
-            }
+            // Aqui você pode chamar a função para atualizar o status do projeto
+            // atualizarStatusProjeto($row['ID_Projeto'], 'Concluído');
+            $row['Status_Projeto'] = 'Concluído'; // Atualiza localmente para evitar mais consultas
         }
+
+        // Converter a string de membros em um array
+        $membros_id_array = explode(',', $row['membros_id']);
+        $membros_nome_array = explode(',', $row['membros_nome']);
+
+        // Combinar IDs e nomes de membros em um array associativo
+        $membros = array();
+        foreach ($membros_id_array as $index => $membro_id) {
+            $nome_membro = isset($membros_nome_array[$index]) ? $membros_nome_array[$index] : 'Nome não disponível';
+            $membros[] = array(
+                'id' => $membro_id,
+                'nome' => $nome_membro
+            );
+        }
+        
+        // Adicionar membros ao projeto
+        $row['membros'] = $membros;
 
         // Adicionar projeto ao array de projetos
         $projetos[] = $row;

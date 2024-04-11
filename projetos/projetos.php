@@ -25,71 +25,67 @@
             <button onclick="filtrarProjetos('pausado')">Pausado</button>
         </div>
 
-        <!-- Container para os projetos -->
-        <div class="projeto-container">
-            <?php
-            // Incluir o arquivo externo com a lógica PHP
-            $projetos = require_once('listar_projetos.php');
+   <!-- Container para os projetos -->
+<div class="projeto-container">
+    <?php
+    // Incluir o arquivo externo com a lógica PHP
+    $projetos = require_once('listar_projetos.php');
 
-            foreach ($projetos as $projeto) :
-            ?>
-                <div class="projeto-card" data-status="<?= strtolower($projeto['Status_Projeto']) ?>">
-                    <h2><?= $projeto['Nome_Projeto'] ?></h2>
-                    <p><strong>Tipo:</strong> <?= $projeto['Tipo_Projeto'] ?></p>
-                    <p><strong>Data de Início:</strong> <?= $projeto['Data_inicio_Projeto'] ?></p>
-                    <p><strong>Data de Término:</strong> <?= $projeto['Data_Fim_Projeto'] ?></p>
-                    <p><strong>Status:</strong> <?= $projeto['Status_Projeto'] ?></p>
-                    <p><strong>Resumo:</strong> <?= $projeto['Resumo_Projeto'] ?></p>
-                    <p><strong>Riscos:</strong> <?= $projeto['Riscos_Projeto'] ?></p>
-                    <p><strong>Orçamento:</strong> <?= $projeto['Orcamento_Projeto'] ?></p>
-                    <p><strong>Recursos:</strong> <?= $projeto['Recursos_Projeto'] ?></p>
-                    <p><strong>Porcentagem de Conclusão:</strong> <?= isset($projeto['Porcentagem_Conclusao']) ? calcularPorcentagemConclusao($projeto['Porcentagem_Conclusao']) . '%' : 'N/A' ?></p>
+    foreach ($projetos as $projeto) :
+    ?>
+        <div class="projeto-card" data-status="<?= strtolower($projeto['Status_Projeto']) ?>">
+            <h2><?= $projeto['Nome_Projeto'] ?></h2>
+            <p><strong>Tipo:</strong> <?= $projeto['Tipo_Projeto'] ?></p>
+            <p><strong>Data de Início:</strong> <?= $projeto['Data_inicio_Projeto'] ?></p>
+            <p><strong>Data de Término:</strong> <?= $projeto['Data_Fim_Projeto'] ?></p>
+            <p><strong>Status:</strong> <?= $projeto['Status_Projeto'] ?></p>
+            <p><strong>Resumo:</strong> <?= $projeto['Resumo_Projeto'] ?></p>
+            <p><strong>Riscos:</strong> <?= $projeto['Riscos_Projeto'] ?></p>
+            <p><strong>Orçamento:</strong> <?= $projeto['Orcamento_Projeto'] ?></p>
+            <p><strong>Recursos:</strong> <?= $projeto['Recursos_Projeto'] ?></p>
+            <p><strong>Porcentagem de Conclusão:</strong> <?= isset($projeto['Porcentagem_Conclusao']) ? calcularPorcentagemConclusao($projeto['Porcentagem_Conclusao']) . '%' : 'N/A' ?></p>
 
-                    <!-- Botões de Ação -->
-                    <div class="botoes-acao">
-                        <button onclick="abrirModalEditar(<?= $projeto['ID_Projeto'] ?>)">Editar</button>
-                        <button onclick="abrirModalExcluir(<?= $projeto['ID_Projeto'] ?>)">Excluir</button>
-                        <button onclick="abrirModalPausar(<?= $projeto['ID_Projeto'] ?>)">Pausar</button>
-                    </div>
+            <!-- Botões de Ação -->
+            <div class="botoes-acao">
+                <button onclick="abrirModalEditar(<?= $projeto['ID_Projeto'] ?>)">Editar</button>
+                <button onclick="abrirModalExcluir(<?= $projeto['ID_Projeto'] ?>)">Excluir</button>
+                <button onclick="abrirModalPausar(<?= $projeto['ID_Projeto'] ?>)">Pausar</button>
+            </div>
 
-                    <!-- Botão para mostrar/esconder detalhes -->
-                    <button class="toggleDetails">Mostrar Detalhes</button>
+            <!-- Botão para mostrar/esconder detalhes -->
+            <button class="toggleDetails">Mostrar Detalhes</button>
 
-                    <!-- Detalhes do Projeto (inicialmente oculto) -->
-                    <div class="detalhes-projeto">
-                        <!-- Tarefas do Projeto -->
-                        <div class="tarefas-container">
-                            <h3>Tarefas</h3>
-                            <ul>
-                                <?php foreach ($projeto['tarefas'] as $tarefa) : ?>
-                                    <li><?= $tarefa['Nome_tarefa'] ?></li>
-                                <?php endforeach; ?>
-                            </ul>
-                        </div>
-
-                        <!-- Informações da Equipe -->
-                        <div class="equipe-info">
-                            <h3>Equipe</h3>
-                            <?php if (isset($projeto['equipe']) && !empty($projeto['equipe'])) : ?>
-                                <?php if (isset($projeto['equipe']['lider'])) : ?>
-                                    <p><strong>Líder da Equipe:</strong> <?= $projeto['equipe']['lider']['nome_usuario'] ?></p>
-                                <?php endif; ?>
-                                <?php if (isset($projeto['equipe']['membros'])) : ?>
-                                    <p><strong>Membros da Equipe:</strong>
-                                        <?php foreach ($projeto['equipe']['membros'] as $membro) : ?>
-                                            <?= $membro['nome_usuario'] ?>,
-                                        <?php endforeach; ?>
-                                    </p>
-                                <?php endif; ?>
-                            <?php else : ?>
-                                <p><strong>Nenhuma informação de equipe disponível.</strong></p>
-                            <?php endif; ?>
-                        </div>
-                    </div>
+            <!-- Detalhes do Projeto (inicialmente oculto) -->
+            <div class="detalhes-projeto">
+                <!-- Tarefas do Projeto -->
+                <div class="tarefas-container">
+                    <h3>Tarefas</h3>
+                    <ul>
+                        <?php foreach ($projeto['tarefas'] as $tarefa) : ?>
+                            <li><?= $tarefa['Nome_tarefa'] ?></li>
+                        <?php endforeach; ?>
+                    </ul>
                 </div>
-            <?php endforeach; ?>
+
+                <!-- Informações da Equipe -->
+                <div class="equipe-info">
+                    <h3>Equipe</h3>
+                    <?php if (isset($projeto['membros']) && !empty($projeto['membros'])) : ?>
+                        <p><strong>Líder da Equipe:</strong> <?= isset($projeto['nome_lider']) ? $projeto['nome_lider'] : 'N/A' ?></p>
+                        <p><strong>Membros da Equipe:</strong> 
+                        <?php foreach ($projeto['membros'] as $membro) : ?>
+                            <?= $membro['nome'] ?>,
+                        <?php endforeach; ?>
+                        </p>
+                    <?php else : ?>
+                        <p><strong>Nenhuma equipe atribuída a este projeto.</strong></p>
+                    <?php endif; ?>
+                </div>
+            </div>
         </div>
-    </div>
+    <?php endforeach; ?>
+</div>
+
 
     <!-- Modais para Adicionar, Editar, Excluir e Pausar Projeto -->
     <!-- Modal para Adicionar Projeto -->
