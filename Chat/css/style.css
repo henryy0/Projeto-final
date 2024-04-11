@@ -1,76 +1,174 @@
-.vh-100 {
-	min-height: 100vh;
-}
-.w-400 {
-	width: 400px;
-}
-.fs-xs {
-	font-size: 1rem;
-}
-.w-10 {
-	width: 10%;
-}
-a {
-	text-decoration: none;
-}
-.fs-big {
-	font-size: 5rem !important;
-}
-.online {
-	width: 10px;
-	height: 10px;
-	background: green;
-	border-radius: 50%;
-}
-.w-15 {
-	width: 15%;
-}
-.fs-sm {
-	font-size: 1.4rem;
-}
-small {
-	color: #bbb;
-	font-size: 0.7rem;
-	text-align: right;
-}
-.chat-box {
-	overflow-y: auto;
-	overflow-x: hidden;
-	max-height: 50vh;
-}
-.rtext {
-	width: 65%;
-	background: #f8f9fa;
-	color: #444;
+/* Reset de estilos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.ltext {
-	width: 65%;
-	background: #3289c8;
-	color: #fff;
-}
-/* width */
-*::-webkit-scrollbar {
-  width: 3px;
+/* Estilos globais */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
 }
 
-/* Track */
-*::-webkit-scrollbar-track {
-  background: #f1f1f1;
+/* Estilo do contêiner principal */
+.chat-container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden; /* Impede que as sombras sejam cortadas */
 }
 
-/* Handle */
-*::-webkit-scrollbar-thumb {
-  background: #aaa;
+/* Estilo da barra lateral */
+.sidebar {
+    width: 300px;
+    background-color: #343a40;
+    color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra suave */
+    background-image: linear-gradient(to bottom, #343a40, #1f2326); /* Adiciona um gradiente de fundo */
+    border-right: 1px solid #495057; /* Adiciona uma borda à direita */
 }
 
-/* Handle on hover */
-*::-webkit-scrollbar-thumb:hover {
-  background: #3289c8;
+/* Estilo do perfil do usuário */
+.profile {
+    text-align: center;
+    margin-bottom: 30px;
 }
 
-textarea {
-	resize: none;
+.profile img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    border: 3px solid #fff; /* Adiciona uma borda branca */
+    transition: transform 0.3s ease; /* Adiciona um efeito de transição suave */
 }
 
-/*message_status*/
+.profile img:hover {
+    transform: scale(1.1); /* Aumenta ligeiramente o tamanho da imagem ao passar o mouse */
+}
+
+.profile h3 {
+    font-size: 1.5rem;
+}
+
+.profile a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    margin-top: 10px;
+}
+
+/* Estilo da caixa de pesquisa */
+.search-box {
+    margin-bottom: 30px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #4f555c; /* Adiciona uma cor de fundo */
+    color: #fff; /* Define a cor do texto como branco */
+    transition: box-shadow 0.3s ease; /* Adiciona um efeito de transição suave */
+}
+
+.search-box input:focus {
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* Adiciona uma sombra ao focar */
+}
+
+/* Estilo da lista de usuários */
+.user-list {
+    overflow-y: auto;
+    max-height: 400px;
+}
+
+.user-list-item {
+    padding: 15px;
+    border-bottom: 1px solid #495057;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Adiciona um efeito de transição suave */
+}
+
+.user-list-item:last-child {
+    border-bottom: none;
+}
+
+.user-list-item:hover {
+    background-color: #6c757d;
+}
+
+.user-list-item img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+    transition: transform 0.3s ease; /* Adiciona um efeito de transição suave */
+}
+
+.user-list-item img:hover {
+    transform: scale(1.1); /* Aumenta ligeiramente o tamanho da imagem ao passar o mouse */
+}
+
+/* Estilo da área de chat */
+.chat {
+    flex: 1;
+    background-color: #fff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra suave */
+    background-image: linear-gradient(to bottom, #fff, #f2f2f2); /* Adiciona um gradiente de fundo */
+}
+
+/* Estilo do cabeçalho do chat */
+.chat-header {
+    border-bottom: 1px solid #dee2e6;
+    padding-bottom: 20px;
+}
+
+.chat-header h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+/* Estilo da área de mensagens do chat */
+.chat-messages {
+    overflow-y: auto;
+    max-height: 400px;
+}
+
+/* Estilo da área de entrada de mensagem */
+.chat-input {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.chat-input input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    margin-right: 10px;
+    transition: box-shadow 0.3s ease; /* Adiciona um efeito de transição suave */
+}
+
+.chat-input button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Adiciona um efeito de transição suave */
+}
+
+.chat-input button:hover {
+    background-color: #0056b3;
+}

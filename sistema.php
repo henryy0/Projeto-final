@@ -45,7 +45,7 @@ session_start();
                         <a class="nav-link" href="equipe/equipe.php">Equipe</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="chat/home2.php">Chat</a>
+                        <a class="nav-link" href="chat/home_chat.php">Chat</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="calendario/calendario.php">Calendário</a>
@@ -75,7 +75,7 @@ session_start();
                     include_once("equipe/equipe.php");
                     break;
                 case 'chat':
-                    include_once("chat/chat.php");
+                    include_once("chat/home_chat.php");
                     break;
                 case 'calendario':
                     include_once("calendario/calendario.php");
