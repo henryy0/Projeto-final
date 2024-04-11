@@ -13,12 +13,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['id_usuario'])) {
         $de_id = $_SESSION['id_usuario'];
         $para_id = $_POST['para_id'];
 
-        // Verificar se os dados estão sendo recebidos corretamente
-echo "Texto da mensagem: " . $_POST['texto_mensagem'] . "<br>";
-echo "De ID: " . $de_id . "<br>";
-echo "Para ID: " . $para_id . "<br>";
-
-
         // Prepara e executa a query SQL para verificar se o usuário de destino existe no banco de dados
         $sql_verificar_usuario = "SELECT id_usuario FROM Usuario WHERE id_usuario = ?";
         $stmt_verificar_usuario = $conn->prepare($sql_verificar_usuario);

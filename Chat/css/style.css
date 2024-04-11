@@ -139,6 +139,51 @@ body {
 .chat-messages {
     overflow-y: auto;
     max-height: 400px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+/* Estilo da mensagem */
+.mensagem {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+/* Estilo do avatar */
+.avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+/* Estilo do conteúdo da mensagem */
+.conteudo-mensagem {
+    max-width: 70%; /* Limita a largura do conteúdo da mensagem */
+    padding: 10px;
+    border-radius: 10px;
+}
+
+/* Estilo para posicionar as mensagens de entrada */
+.mensagem-entrada {
+    justify-content: flex-start; /* Alinha a mensagem à esquerda */
+}
+
+/* Estilo para posicionar as mensagens de saída */
+.mensagem-saida {
+    justify-content: flex-end; /* Alinha a mensagem à direita */
+}
+
+/* Estilo da mensagem de entrada */
+.mensagem-entrada .conteudo-mensagem {
+    background-color: #f2f2f2; /* Cor de fundo das mensagens de entrada */
+}
+
+/* Estilo da mensagem de saída */
+.mensagem-saida .conteudo-mensagem {
+    background-color: #007bff; /* Cor de fundo das mensagens de saída */
+    color: #fff; /* Cor do texto das mensagens de saída */
 }
 
 /* Estilo da área de entrada de mensagem */
