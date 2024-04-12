@@ -68,10 +68,10 @@ if (isset($_SESSION['id_usuario'])) {
                 $classe_css = ($mensagem['de_id'] == $de_id) ? 'mensagem-saida' : 'mensagem-entrada';
 
                 // Recupera o caminho da imagem do usuário remetente
-                $caminho_imagem_de = ($row_de !== null) ? "img/usuarios/" . $de_id . "/" . $row_de['foto_usuario'] : '';
+                $caminho_imagem_de = ($row_de !== null) ? "../img/usuarios/" . $de_id . "/" . $row_de['foto_usuario'] : '';
 
                 // Recupera o caminho da imagem do usuário destinatário
-                $caminho_imagem_para = ($row_para !== null) ? "img/usuarios/" . $para_id . "/" . $row_para['foto_usuario'] : '';
+                $caminho_imagem_para = ($row_para !== null) ? "../img/usuarios/" . $para_id . "/" . $row_para['foto_usuario'] : '';
 
                 // Exibe a mensagem formatada com a formatação desejada
                 echo '<div class="mensagem ' . $classe_css . '">';

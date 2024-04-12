@@ -16,19 +16,34 @@ $(document).ready(function(){
 
     // Função para carregar informações do destinatário e mensagens do chat
     function loadRecipientInfoAndMessages(userId, userName){
-        // Atualizar o cabeçalho do chat com as informações do destinatário, incluindo o último acesso
+        // Atualizar o cabeçalho do chat com as informações do destinatário, incluindo o último acesso específico do usuário
         $.ajax({
-            url: 'ajax/update_last_seen.php', // Endpoint para obter o último acesso do destinatário
+            url: 'ajax/get_last_seen.php', // Endpoint para obter o último acesso específico do usuário
             method: 'POST',
-            data: {recipient_id: userId},
-            success: function(data){
-                var lastSeen = data; // Último acesso retornado do servidor
-                var recipientInfoHtml = '<img src="recipient_picture.jpg" alt="Recipient Picture"><h3>' + userName + '</h3><p>Último Acesso: ' + lastSeen + '</p>';
-                $('#recipientInfo').html(recipientInfoHtml);
-                // Atualiza o campo oculto com o ID do destinatário
-                $('#recipientId').val(userId);
-                // Carregar mensagens do chat
-                loadChatMessages(userId);
+            data: {recipient_id: userId}, // Envia o ID do destinatário para o endpoint
+            success: function(lastSeenData){
+                var lastSeen = lastSeenData; // Último acesso retornado do servidor
+                
+                // Solicitar o caminho da imagem do destinatário
+                $.ajax({
+                    url: 'ajax/getRecipientImage.php', // Endpoint para obter a imagem do destinatário
+                    method: 'POST',
+                    data: {recipient_id: userId},
+                    success: function(imageData){
+                        var recipientImage = imageData; // Caminho da imagem do destinatário retornado do servidor
+                        
+                        // Construir o HTML para exibir a imagem e outras informações do destinatário
+                        var recipientInfoHtml = '<img src="' + recipientImage + '" alt="Recipient Picture" style="width: 50px; height: 50px; border-radius: 50%;"><h3>' + userName + '</h3><p>Último Acesso: ' + lastSeen + '</p>';
+
+                        $('#recipientInfo').html(recipientInfoHtml);
+                        
+                        // Atualizar o campo oculto com o ID do destinatário
+                        $('#recipientId').val(userId);
+                        
+                        // Carregar mensagens do chat
+                        loadChatMessages(userId);
+                    }
+                });
             }
         });
     }

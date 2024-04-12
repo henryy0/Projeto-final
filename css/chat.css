@@ -1,0 +1,313 @@
+/* Reset de estilos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos globais */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Estilo do contêiner principal */
+.chat-container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden; /* Impede que as sombras sejam cortadas */
+}
+
+/* Estilo da barra lateral */
+.sidebar {
+    width: 300px;
+    background-color: #343a40;
+    color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Adiciona uma sombra mais pronunciada */
+    background-image: linear-gradient(to bottom, #343a40, #1f2326); /* Adiciona um gradiente de fundo */
+    border-right: 2px solid #495057; /* Borda mais grossa */
+}
+
+/* Estilo do perfil do usuário */
+.profile {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    border: 4px solid #fff; /* Borda mais grossa */
+    transition: transform 0.4s ease; /* Transição mais lenta */
+}
+
+.profile img:hover {
+    transform: scale(1.2); /* Maior aumento de tamanho */
+}
+
+.profile h3 {
+    font-size: 2rem; /* Tamanho de fonte maior */
+    margin-bottom: 15px; /* Maior espaçamento inferior */
+}
+
+.profile a {
+    color: #fff;
+    text-decoration: none;
+    display: inline-block; /* Ajuste para alinhar os elementos horizontalmente */
+    margin-top: 15px; /* Maior margem superior */
+    padding: 10px 20px; /* Mais espaçamento interno */
+    background-color: #007bff;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.profile a:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo da caixa de pesquisa */
+.search-box {
+    margin-bottom: 30px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #495057; /* Borda mais grossa */
+    border-radius: 10px; /* Bordas mais arredondadas */
+    font-size: 1.2rem; /* Tamanho de fonte maior */
+    background-color: #4f555c;
+    color: #fff;
+    transition: border-color 0.3s ease;
+}
+
+.search-box input:focus {
+    border-color: #007bff; /* Cor da borda ao focar */
+}
+
+/* Estilo da lista de usuários */
+.user-list {
+    overflow-y: auto;
+    max-height: 500px; /* Maior altura máxima */
+}
+
+.user-list-item {
+    padding: 20px;
+    border-bottom: 2px solid #495057; /* Borda mais grossa */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.user-list-item:last-child {
+    border-bottom: none;
+}
+
+.user-list-item:hover {
+    background-color: #6c757d;
+}
+
+.user-list-item img {
+    width: 60px; /* Tamanho de imagem maior */
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 20px;
+    transition: transform 0.4s ease;
+}
+
+.user-list-item img:hover {
+    transform: scale(1.1);
+}
+
+/* Estilo da área de chat */
+.chat {
+    flex: 1;
+    background-color: #fff;
+    padding: 30px; /* Mais espaçamento interno */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: -10px 0 20px rgba(0, 0, 0, 0.3); /* Sombra mais pronunciada */
+    background-image: linear-gradient(to bottom, #fff, #f2f2f2);
+}
+
+/* Estilo do cabeçalho do chat */
+.chat-header {
+    border-bottom: 2px solid #dee2e6; /* Borda mais grossa */
+    padding-bottom: 30px; /* Mais espaçamento interno */
+}
+
+.chat-header h3 {
+    font-size: 2.5rem; /* Tamanho de fonte maior */
+    margin-bottom: 20px; /* Maior espaçamento inferior */
+}
+
+/* Estilo da área de mensagens do chat */
+.chat-messages {
+    overflow-y: auto;
+    max-height: 500px; /* Maior altura máxima */
+    display: flex;
+    flex-direction: column;
+    padding: 20px; /* Mais espaçamento interno */
+}
+
+/* Estilo da mensagem */
+.mensagem {
+    display: flex;
+    margin-bottom: 20px; /* Maior espaçamento inferior */
+}
+
+/* Estilo do avatar */
+.avatar {
+    width: 40px; /* Tamanho de imagem maior */
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+/* Estilo do conteúdo da mensagem */
+.conteudo-mensagem {
+    max-width: 80%; /* Maior largura máxima */
+    padding: 15px; /* Mais espaçamento interno */
+    border-radius: 20px; /* Bordas mais arredondadas */
+}
+
+/* Estilo para posicionar as mensagens de entrada */
+.mensagem-entrada {
+    justify-content: flex-start;
+}
+
+/* Estilo para posicionar as mensagens de saída */
+.mensagem-saida {
+    justify-content: flex-end;
+}
+
+/* Estilo da mensagem de entrada */
+.mensagem-entrada .conteudo-mensagem {
+    background-color: #f2f2f2;
+}
+
+/* Estilo da mensagem de saída */
+.mensagem-saida .conteudo-mensagem {
+    background-color: #007bff;
+    color: #fff;
+}
+
+/* Estilo da área de entrada de mensagem */
+.chat-input {
+    display: flex;
+    align-items: center;
+    margin-top: 30px; /* Maior margem superior */
+}
+
+.chat-input input[type="text"] {
+    flex: 1;
+    padding: 15px; /* Mais espaçamento interno */
+    border: 2px solid #495057; /* Borda mais grossa */
+    border-radius: 20px; /* Bordas mais arredondadas */
+    font-size: 1.2rem;
+    margin-right: 20px; /* Maior margem direita */
+    transition: border-color 0.3s ease;
+}
+
+.chat-input input[type="text"]:focus {
+    border-color: #007bff;
+}
+
+.chat-input button {
+    padding: 15px 25px; /* Mais espaçamento interno */
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    border-radius: 20px; /* Bordas mais arredondadas */
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-left: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.chat-input button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo do link de logout */
+.logout-link {
+    color: #fff;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 20px; /* Maior margem superior */
+    padding: 15px 30px; /* Mais espaçamento interno */
+    background-color: #dc3545;
+    border-radius: 10px; /* Bordas mais arredondadas */
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.logout-link:hover {
+    background-color: #c82333;
+}
+
+/* Estilo para o input de arquivo personalizado */
+.custom-file-input {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.custom-file-input input[type="file"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.custom-file-input .file-label {
+    display: inline-block;
+    padding: 15px 30px; /* Mais espaçamento interno */
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 20px; /* Bordas mais arredondadas */
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.custom-file-input .file-label:hover {
+    background-color: #0056b3;
+}
+
+.custom-file-input .file-icon {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.custom-file-input .file-icon i {
+    font-size: 1.5rem; /* Tamanho de ícone maior */
+}
+
+.custom-file-input .file-text {
+    display: inline-block;
+    vertical-align: middle;
+}

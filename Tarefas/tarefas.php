@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../css/tarefas.css"> <!-- Link para o CSS específico da página de tarefas -->
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="icon" type="image/png" href="../img/logo.png">
 </head>
 
 <body>

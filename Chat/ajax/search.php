@@ -55,15 +55,29 @@ if (isset($_SESSION['id_usuario'])) {
                     $ultima_mensagem = 'Nenhuma mensagem';
                 }
 
-                // Exibe o usuário na lista
-                ?>
-                <div class="user-list-item" data-userid="<?php echo $usuario_id; ?>" data-username="<?php echo htmlspecialchars($usuario['nome_usuario']); ?>">
-                    <img src="uploads/<?php echo htmlspecialchars($usuario['foto_usuario']); ?>" class="w-10 rounded-circle">
-                    <h3 class="fs-xs m-2"><?php echo htmlspecialchars($usuario['nome_usuario']) . " " . htmlspecialchars($usuario['sobrenome_usuario']); ?></h3>
-                    <span>Último Acesso: <?php echo $ultimo_acesso; ?></span>
-                    <p>Última Mensagem: <?php echo $ultima_mensagem; ?></p>
-                </div>
-                <?php
+                // Consulta para obter o caminho da imagem do usuário
+                $sql_imagem = "SELECT foto_usuario FROM Usuario WHERE id_usuario = ?";
+                $stmt_imagem = $conn->prepare($sql_imagem);
+                $stmt_imagem->bind_param("i", $usuario_id);
+                $stmt_imagem->execute();
+                $result_imagem = $stmt_imagem->get_result();
+
+                // Exibe a imagem do usuário e o menu dropdown
+                if ($result_imagem && $result_imagem->num_rows > 0) {
+                    $row_imagem = $result_imagem->fetch_assoc();
+                    $caminho_imagem = "../img/usuarios/{$usuario_id}/{$row_imagem['foto_usuario']}";
+                    ?>
+                    <div class="user-list-item" data-userid="<?php echo $usuario_id; ?>" data-username="<?php echo htmlspecialchars($usuario['nome_usuario']); ?>">
+                        <img src="<?php echo $caminho_imagem; ?>" class="w-10 rounded-circle" alt="Foto do Usuário">
+                        <h3 class="fs-xs m-2"><?php echo htmlspecialchars($usuario['nome_usuario']) . " " . htmlspecialchars($usuario['sobrenome_usuario']); ?></h3>
+                        <span>Último Acesso: <?php echo $ultimo_acesso; ?></span>
+                        <p>Última Mensagem: <?php echo $ultima_mensagem; ?></p>
+                    </div>
+                    <?php
+                }
+
+                // Fecha a consulta da imagem
+                $stmt_imagem->close();
             }
         } else {
             // Se nenhum usuário correspondente for encontrado, exibe uma mensagem informativa
